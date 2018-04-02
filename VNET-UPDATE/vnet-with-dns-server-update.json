@@ -1,40 +1,40 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "virtualNetworkName": {
-      "type": "string",
-      "metadata": {
-        "description": "The name of the Virtual Network to Create"
-      }
-    },
-    "virtualNetworkAddressRange": {
-      "type": "string",
-      "metadata": {
-        "description": "The address range of the new VNET in CIDR format"
-      },
-      "defaultValue": "10.0.0.0/16"
-    },
-    "subnetName": {
-      "type": "string",
-      "metadata": {
-        "description": "The name of the subnet created in the new VNET"
-      }
-    },
-    "subnetRange": {
-        "type": "string",
-        "metadata": {
-            "description": "The address range of the subnet created in the new VNET"
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworkName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the Virtual Network to Create"
+            }
         },
-        "defaultValue": "10.0.0.0/24"
-    },
-    "virtualNetworkRGName": {
-        "type": "string",
-        "metadata": {
-            "description": "VNET RG Name"
-        }
-    },
-    "vnetRegion": {
+        "virtualNetworkAddressRange": {
+            "type": "string",
+            "metadata": {
+                "description": "The address range of the new VNET in CIDR format"
+            },
+            "defaultValue": "10.0.0.0/16"
+        },
+        "subnetName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the subnet created in the new VNET"
+            }
+        },
+        "subnetRange": {
+            "type": "string",
+            "metadata": {
+                "description": "The address range of the subnet created in the new VNET"
+            },
+            "defaultValue": "10.0.0.0/24"
+        },
+        "virtualNetworkRGName": {
+            "type": "string",
+            "metadata": {
+                "description": "VNET RG Name"
+            }
+        },
+        "vnetRegion": {
             "defaultValue": "westeurope",
             "allowedValues": [
                 "westeurope",
@@ -47,24 +47,24 @@
                 "description": "Vm Region"
             }
         },
-    "DNSServerAddress": {
-      "type": "array",
-      "metadata": {
-        "description": "The DNS address(es) of the DNS Server(s) used by the VNET"
-      }
-    }
-  },
-  "variables":{
-  
-     "vnetId": "[resourceId( parameters('virtualNetworkRGName'),'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
-	  "subscriptionid": "[subscription().subscriptionId]",
-	   "id": "[concat('/subscriptions/',variables('subscriptionid'),'/resourceGroups/',variables('vnetId'))],
-  },
+        "DNSServerAddress": {
+            "type": "array",
+            "metadata": {
+                "description": "The DNS address(es) of the DNS Server(s) used by the VNET"
+            }
+        }
+    },
+    "variables": {
+
+        "vnetId": "[resourceId( parameters('virtualNetworkRGName'),'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+        "subscriptionid": "[subscription().subscriptionId]",
+        "fullvnetid": "[concat('/subscriptions/',variables('subscriptionid'),'/resourceGroups/',variables('vnetId'))]" 
+    },
   "resources": [
     {
       "type": "Microsoft.Network/virtualNetworks",
       "name": "[parameters('virtualNetworkName')]",
-	  "id":"[variables('id')]",
+	  "id":"[variables('fullvnetid')]",
       "apiVersion": "2016-03-30",
       "location": "[parameters('vnetRegion')]",
       "properties": {
