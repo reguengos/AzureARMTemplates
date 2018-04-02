@@ -22,12 +22,31 @@
       }
     },
     "subnetRange": {
-      "type": "string",
-      "metadata": {
-        "description": "The address range of the subnet created in the new VNET"
-      },
-      "defaultValue": "10.0.0.0/24"
+        "type": "string",
+        "metadata": {
+            "description": "The address range of the subnet created in the new VNET"
+        },
+        "defaultValue": "10.0.0.0/24"
     },
+    "virtualNetworkRGName": {
+        "type": "string",
+        "metadata": {
+            "description": "VNET RG Name"
+        }
+    },
+    "vnetRegion": {
+            "defaultValue": "westeurope",
+            "allowedValues": [
+                "westeurope",
+                "northeurope",
+                "eastus"
+            ],
+            "minLength": 1,
+            "type": "string",
+            "metadata": {
+                "description": "Vm Region"
+            }
+        },
     "DNSServerAddress": {
       "type": "array",
       "metadata": {
@@ -38,9 +57,9 @@
   "resources": [
     {
       "type": "Microsoft.Network/virtualNetworks",
-      "name": "[parameters('virtualNetworkName')]",
+      "name": "[concat(parameters('virtualNetworkRGName'), '/', parameters('virtualNetworkName'))]",
       "apiVersion": "2016-03-30",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('vnetRegion')]",
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
