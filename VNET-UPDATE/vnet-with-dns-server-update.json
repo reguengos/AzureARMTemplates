@@ -49,10 +49,7 @@
             }
         }
     },
-    "variables": {
 
-        "vnetId": "[resourceId( parameters('virtualNetworkRGName'),'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
-            },
   "resources": [
     {
       "type": "Microsoft.Network/virtualNetworks",
