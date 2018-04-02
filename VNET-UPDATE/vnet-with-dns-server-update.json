@@ -57,14 +57,12 @@
     "variables": {
 
         "vnetId": "[resourceId( parameters('virtualNetworkRGName'),'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
-        "subscriptionid": "[subscription().subscriptionId]",
-        "fullvnetid": "[concat('/subscriptions/',variables('subscriptionid'),'/resourceGroups',variables('vnetId'))]" 
-    },
+            },
   "resources": [
     {
       "type": "Microsoft.Network/virtualNetworks",
       "name": "[parameters('virtualNetworkName')]",
-	  "id":"[variables('fullvnetid')]",
+	  "id":"[variables('vnetId')]",
       "apiVersion": "2016-03-30",
       "location": "[parameters('vnetRegion')]",
       "properties": {
