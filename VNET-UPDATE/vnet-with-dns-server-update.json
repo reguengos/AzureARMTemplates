@@ -58,7 +58,7 @@
 
         "vnetId": "[resourceId( parameters('virtualNetworkRGName'),'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
         "subscriptionid": "[subscription().subscriptionId]",
-        "fullvnetid": "[concat('/subscriptions/',variables('subscriptionid'),'/resourceGroups/',variables('vnetId'))]" 
+        "fullvnetid": "[concat('/subscriptions/',variables('subscriptionid'),'/resourceGroups',variables('vnetId'))]" 
     },
   "resources": [
     {
