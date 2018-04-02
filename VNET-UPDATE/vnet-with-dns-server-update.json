@@ -28,12 +28,7 @@
             },
             "defaultValue": "10.0.0.0/24"
         },
-        "virtualNetworkRGName": {
-            "type": "string",
-            "metadata": {
-                "description": "VNET RG Name"
-            }
-        },
+
         "vnetRegion": {
             "defaultValue": "westeurope",
             "allowedValues": [
@@ -62,8 +57,7 @@
     {
       "type": "Microsoft.Network/virtualNetworks",
       "name": "[parameters('virtualNetworkName')]",
-	  "id":"[variables('vnetId')]",
-      "apiVersion": "2016-03-30",
+        "apiVersion": "2017-05-10",
       "location": "[parameters('vnetRegion')]",
       "properties": {
         "addressSpace": {
