@@ -62,7 +62,7 @@
     {
       "type": "Microsoft.Network/virtualNetworks",
       "name": "[parameters('virtualNetworkName')]",
-	  "id":"[parameters('vnetId')]",
+	  "id":"[variables('vnetId')]",
       "apiVersion": "2016-03-30",
       "location": "[parameters('vnetRegion')]",
       "properties": {
